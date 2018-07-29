@@ -17,6 +17,7 @@ int main (int argc, char* argv[]) {
         tree->set_root(new_root);
     }
 
+    std::cout << "Tree contains " << tree->get_count(tree->get_root()) << " nodes.\n";
     tree->print_inorder(tree->get_root());
     std::cout << std::endl;
 

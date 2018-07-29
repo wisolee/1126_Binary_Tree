@@ -18,6 +18,7 @@ class binary_tree {
 
         // Retrieval Methods
         node* get_root();
+        int get_count(node* root);
         
         // Update Methods
         void set_root(node* new_root);

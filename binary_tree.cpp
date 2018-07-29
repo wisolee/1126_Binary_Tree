@@ -10,6 +10,14 @@ node* binary_tree::get_root() {
     return this->root;
 }
 
+// Retrieves count (number of nodes in tree)
+int binary_tree::get_count(node* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return get_count(root->left) + get_count(root->right) + 1;
+}
+
 // Updates root
 void binary_tree::set_root(node* new_root) {
     this->root = new_root;

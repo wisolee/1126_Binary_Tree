@@ -1,3 +1,4 @@
+
 #include "binary_tree.hpp"
 
 // Constructor: Creates an empty binary tree
@@ -73,6 +74,26 @@ bool binary_tree::search(node* root, int data) {
     return false;
 }
 
+void binary_tree::print_levelorder(node* root) {
+    // Case 1: Tree is empty
+    if (root == nullptr) {
+        return;
+    }
+    // Case 2: Tree is not empty
+    std::queue<node*> discovery_queue;
+    discovery_queue.push(root);
+    while (!discovery_queue.empty()) {
+        // Push children of discovered node
+        node* popped_node = discovery_queue.front();
+        if (popped_node->left != nullptr) discovery_queue.push(popped_node->left);
+        if (popped_node->right != nullptr) discovery_queue.push(popped_node->right);
+        std::cout << popped_node->data << " ";
+        discovery_queue.pop();
+    }
+    std::cout << std::endl;
+    return;
+}
+
 void binary_tree::print_inorder(node* root) {
     node* curr_node = root;
     if (curr_node == nullptr) return; // base/terminating case
@@ -80,6 +101,7 @@ void binary_tree::print_inorder(node* root) {
     print_inorder(curr_node->left);
     std::cout << curr_node->data << " ";
     print_inorder(curr_node->right);
+    return;
 }
 
 void binary_tree::print_preorder(node* root) {
@@ -89,6 +111,7 @@ void binary_tree::print_preorder(node* root) {
     std::cout << curr_node->data << " ";
     print_inorder(curr_node->left);
     print_inorder(curr_node->right);
+    return;
 }
 
 void binary_tree::print_postorder(node* root) {
@@ -98,5 +121,6 @@ void binary_tree::print_postorder(node* root) {
     print_inorder(curr_node->left);
     print_inorder(curr_node->right); 
     std::cout << curr_node->data << " ";
+    return;
     
 }

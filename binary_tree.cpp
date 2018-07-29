@@ -50,6 +50,21 @@ node* binary_tree::insert(node* root, int data) {
     return root;
 }
 
+bool binary_tree::search(node* root, int data) {
+    // Case 1: Tree is empty
+    if (root == nullptr) {
+        return false;
+    } else if (data == root->data) {
+        return true;
+    } else if (data <= root->data) {
+        return search(root->left, data);
+    } else {
+        return search(root->right, data);
+    }
+
+    return false;
+}
+
 void binary_tree::print_inorder(node* root) {
     node* curr_node = root;
     if (curr_node == nullptr) return; // base/terminating case

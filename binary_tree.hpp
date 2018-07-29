@@ -25,6 +25,7 @@ class binary_tree {
         // Member Methods
         //void insert(int data); <-- loop version
         node* insert(node* root, int data);
+        bool search(node* root, int data);
 
         void print_inorder(node* root);
         void print_preorder(node* root);

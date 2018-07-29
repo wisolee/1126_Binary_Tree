@@ -18,9 +18,13 @@ class binary_tree {
 
         // Retrieval Methods
         node* get_root();
+        
+        // Update Methods
+        void set_root(node* new_root);
 
-        // Member Methds
-        void insert(int data);
+        // Member Methods
+        //void insert(int data); <-- loop version
+        node* insert(node* root, int data);
 
         void print_inorder(node* root);
         void print_preorder(node* root);

@@ -19,6 +19,20 @@ int binary_tree::get_count(node* root) {
     return get_count(root->left) + get_count(root->right) + 1;
 }
 
+int binary_tree::get_max(node* root) {
+    if (root->right == nullptr) {
+        return root->data;
+    }
+    return get_max(root->right);
+}
+
+int binary_tree::get_min(node* root){
+    if (root->left == nullptr) {
+        return root->data;
+    }
+    return get_min(root->left);
+}
+
 // Updates root
 void binary_tree::set_root(node* new_root) {
     this->root = new_root;
@@ -56,6 +70,40 @@ node* binary_tree::insert(node* root, int data) {
         root->right = insert(root->right, data);    // Case 2.2: Insert into right subtree
     }
 
+    return root;
+}
+
+node* binary_tree::remove(node* root, int data) {
+    // Case 1: Empty Tree
+    if (root == nullptr) {
+        return root;
+    } // Case 2: Locate node
+    else if (data < root->data) {
+        root->left = remove(root->left, data); // update root->left address
+    } else if (data > root->data) {
+        root->right = remove(root->right, data);
+    } // Located root
+    else { 
+        // Case 2.1: node has no children
+        if (root->left == nullptr && root->right == nullptr) {
+            delete root;
+            root = nullptr;   
+        } // Case 2.2: node has one child
+        else if (root->left == nullptr) {
+            node* deleted_node = root;
+            root = root->right;
+            delete deleted_node;
+        } else if (root->right == nullptr) {
+            node* deleted_node = root;
+            root = root->left;
+            delete deleted_node;
+        } // Case 2.3: node has two children
+        else {
+            int min = get_min(root->right);
+            root->data = min;
+            root->right = remove(root->right, min);
+        }
+    }
     return root;
 }
 

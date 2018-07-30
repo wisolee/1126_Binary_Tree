@@ -20,13 +20,16 @@ class binary_tree {
         // Retrieval Methods
         node* get_root();
         int get_count(node* root);
+        int get_max(node* root);
+        int get_min(node* root);
         
         // Update Methods
         void set_root(node* new_root);
 
-        // Member Methods
+        // Manipulator Methods
         //void insert(int data); <-- loop version
         node* insert(node* root, int data);
+        node* remove(node* root, int data);
         bool search(node* root, int data);
 
         // Breadth-First Search Algorithm
